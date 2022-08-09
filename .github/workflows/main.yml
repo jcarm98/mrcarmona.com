@@ -11,7 +11,7 @@ jobs:
           eval `ssh-agent -s`
           echo "${{secrets.PRIVATE_KEY}}" >> private_key
           chmod 400 private_key
-          ssh-add private_key
+          echo "${{secretes.PRIVATE_KEY_PASSWORD}}" | ssh-add -p private_key
 #       - name: Attempt to scp to do vm
 #         run: |
 #           echo "this is a newly created file!" >> newfile.txt
