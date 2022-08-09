@@ -12,8 +12,6 @@ jobs:
           echo "${{secrets.PRIVATE_KEY}}" >> private_key
           chmod 400 private_key
           ssh-add private_key
-      - name: Attempt to scp to do vm
-        run: |
           echo "this is a newly created file!" >> newfile.txt
           scp newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
 
