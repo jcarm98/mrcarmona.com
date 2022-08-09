@@ -11,7 +11,10 @@ jobs:
           eval `ssh-agent -s`
           echo "${{secrets.PRIVATE_KEY}}" >> private_key
           chmod 400 private_key
-          echo "${{secrets.PRIVATE_KEY_PASSWORD}}" | ssh-add -p private_key
+          echo $SSH_ASKPASS
+          apt-get install ssh-askpass
+          SSH_ASKPASS = ${{secrets.PRIVATE_KEY_PASSWORD}}
+          ssh-add private_key
 #       - name: Attempt to scp to do vm
 #         run: |
 #           echo "this is a newly created file!" >> newfile.txt
