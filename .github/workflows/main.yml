@@ -12,8 +12,8 @@ jobs:
           echo "${{secrets.PRIVATE_KEY}}" >> private_key
           chmod 400 private_key
           ssh-add private_key
-          echo "this is a newly created file!" >> newfile.txt
-          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
+          echo "this is a newly created file!" >> newfile.txt 
+          # scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@${{secrets.SERVER_IP}}
           echo 'working?'
           echo 'this is a test!' > brand_spanking_new.txt
