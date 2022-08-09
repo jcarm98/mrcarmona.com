@@ -15,7 +15,8 @@ jobs:
           echo "this is a newly created file!" >> newfile.txt
           scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@${{secrets.SERVER_IP}}
-          echo "this is a test!" > brand_spanking_new.txt
+          echo 'working?'
+          echo 'this is a test!' > brand_spanking_new.txt
           exit
           ssh-add -l
 
