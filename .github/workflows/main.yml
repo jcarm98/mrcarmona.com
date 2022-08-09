@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: Load private key
         run: |
+          eval `ssh-agent -s`
           echo "${{secrets.PRIVATE_KEY}}" >> private_key
           ssh-add private_key
 #       - name: Attempt to scp to do vm
