@@ -16,6 +16,8 @@ jobs:
           scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@${{secrets.SERVER_IP}}
           echo "this is a test!" > brand_spanking_new.txt
+          exit
+          ssh-add -l
 
 # This is a basic workflow to help you get started with Actions
 
