@@ -13,7 +13,7 @@ jobs:
       - run: eval `ssh-agent -s` && ssh-add private_key
       - run: echo "this is a newly created file!" >> newfile.txt 
       - run: scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i private_key newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
-      - run: ssh -tt -o StrictHostKeyChecking=no root@${{secrets.SERVER_IP}}
+      - run: eval `ssh-agent -s` && ssh -tt -o StrictHostKeyChecking=no root@${{secrets.SERVER_IP}}
       - run: echo 'working?'
       - run: echo 'this is a test!' > brand_spanking_new.txt
       - run: exit
