@@ -10,7 +10,7 @@ jobs:
       - run: echo "${{secrets.PRIVATE_KEY}}" >> private_key
       - run: chmod 400 private_key
       - run: ls -alF
-      - run: ssh-add private_key
+      - run: eval `ssh-agent -s` && ssh-add private_key
       - run: echo "this is a newly created file!" >> newfile.txt 
           # scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null newfile.txt root@${{secrets.SERVER_IP}}:~/newfile.txt
       - run: ssh -o StrictHostKeyChecking=no root@${{secrets.SERVER_IP}}
