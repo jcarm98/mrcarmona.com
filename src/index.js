@@ -44,7 +44,27 @@ function Tile(props) {
                 }}>
 
                 <h5 className="row no-gutters">
-                    {props.name}:&nbsp;{props.link !== undefined ? (<a href={props.link}>{props.link}</a>) : ""}
+                    <div className="col d-flex justify-content-start">
+                        {props.name}:&nbsp;
+                        {
+                            props.link !== undefined ? (
+
+                                <a href={props.link}>
+                                    {props.link}
+                                </a>
+
+                            ) : ""
+                        }
+                    </div>
+                    <div className="col d-flex justify-content-end align-items-center"> {
+                        props.source !== undefined ? (
+                            <a href={props.source}
+                                className="btn btn-dark"
+                                style={{}}>
+                                Source
+                            </a>
+                        ) : ""
+                    }</div>
                 </h5>
 
                 <div className="row no-gutters">
@@ -78,13 +98,14 @@ function Tile(props) {
 }
 
 class Project {
-    constructor(name, link, skills, about, path, path2) {
+    constructor(name, link, skills, about, path, path2, source) {
         this.name = name;
         this.link = link;
         this.skills = skills;
         this.about = about;
         this.path = path;
         this.path2 = path2;
+        this.source = source;
     }
 }
 
@@ -97,7 +118,7 @@ class Websites extends React.Component {
             "https://splitreceipt.app",
             ["CSS", "Javascript", "Nginx", "React.js"],
             "SplitReceipt.app is a web app designed to make it easy to split a receipt with your friends.",
-            "sr.png",
+            "sr.png"
         );
         let hobbyshare = new Project(
             "HobbyShare.app",
@@ -105,7 +126,8 @@ class Websites extends React.Component {
             ["Angular", "Bootstrap", "CSS", "Django", "Typescript", "Nginx", "Python"],
             "HobbyShare.app is a social platform to share and collaborate on projects.",
             "hs1.png",
-            "hs2.png"
+            "hs2.png",
+            "https://github.com/jcarm98/hobby-share"
         );
 
         let mikemcbridemasonry = new Project(
@@ -113,11 +135,19 @@ class Websites extends React.Component {
             "https://mikemcbridemasonry.com",
             ["Apache", "Bootstrap", "CSS", "Javascript", "React.js"],
             "Mike McBride Masonry is a masonry business located in Coachella Valley, California.",
-            "mmm.png",
+            "mmm.png", undefined, "https://github.com/jcarm98/mike-mcbride-masonry"
+        );
+
+        let foodtourney = new Project(
+            "Food Tourney",
+            "https://foodtourney.app",
+            ["Apache", "ASP.NET", "Bootstrap", "C#", "Google Cloud Platform", "SCSS", "TypeScript"," Vue.js"],
+            "Food Tourney is a web app that helps you decide where to eat using your location or an address.",
+            "ft.png", undefined, "https://github.com/jcarm98/food-tourney"
         );
 
         this.state = {
-            websites: [mikemcbridemasonry, hobbyshare, splitreceipt],
+            websites: [foodtourney, mikemcbridemasonry, hobbyshare, splitreceipt],
         };
     }
 
@@ -129,7 +159,8 @@ class Websites extends React.Component {
                 path={website.path}
                 path2={website.path2}
                 skills={website.skills}
-                about={website.about} />
+                about={website.about}
+                source={website.source}/>
             ));
         return (
             <div>
@@ -157,7 +188,8 @@ class Software extends React.Component {
             "Client-server chess for easily playing online." +
             " This was created before Windows 10, which decreases the size of the program window.",
             "ch1.png",
-            "ch2.png"
+            "ch2.png",
+            "https://github.com/jcarm98/Chess"
         );
 
         this.state = {
@@ -173,7 +205,8 @@ class Software extends React.Component {
                 path={program.path}
                 path2={program.path2}
                 skills={program.skills}
-                about={program.about} />
+                about={program.about}
+                source={program.source} />
         ));
         return (
             <div>
@@ -262,13 +295,13 @@ class Portfolio extends React.Component {
 
     componentDidMount() {
         if (window.location.href.substring(window.location.href.length - 9, window.location.href.length) === "/websites") {
-            this.setTitle("Joseph Carmona | Websites");
+            this.setTitle("Full Stack Developer | Joseph Carmona | Websites");
         }
         if (window.location.href.substring(window.location.href.length - 9, window.location.href.length) === "/software") {
-            this.setTitle("Joseph Carmona | Software");
+            this.setTitle("Full Stack Developer | Joseph Carmona | Software");
         }
         if (window.location.href.substring(window.location.href.length - 9, window.location.href.length) === "/hardware") {
-            this.setTitle("Joseph Carmona | Hardware");
+            this.setTitle("Full Stack Developer | Joseph Carmona | Hardware");
         }
     }
     // backgroundImage: "linear-gradient( to right, #128e0b, transparent)"
@@ -287,7 +320,10 @@ class Portfolio extends React.Component {
                         update={(title) => this.setTitle(title)}
                         size="h1" />
 
-                    <h4 className="text-center">joseph[at]splitreceipt[dot]app</h4>
+                    <h4 className="text-center">joseph[at]splitreceipt[dot]app |&nbsp;
+                        <a href="https://github.com/jcarm98/"
+                            style={{color: "#000000"}}>Github</a>
+                    </h4>
 
                     <div className="row no-gutters">
                         <div className="col text-center">
