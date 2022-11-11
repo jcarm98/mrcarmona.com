@@ -31,6 +31,6 @@ jobs:
     # copy nginx config to previous location
     # restart nginx
     # remove random string directory
-      - run: echo "rm -rf /etc/apache2/sites-enabled/portfolio-test && cp ~/$(cat name.txt)/test.conf /etc/apache2/sites-enabled/portfolio-test && sudo /usr/sbin/service apache2 restart; rm -rf ~/$(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP}}
+      - run: echo "rm -rf /etc/apache2/sites-enabled/portfolio-test.conf && cp ~/$(cat name.txt)/test.conf /etc/apache2/sites-enabled/portfolio-test.conf && sudo /usr/sbin/service apache2 restart; rm -rf ~/$(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP}}
       - run: eval `ssh-agent -s` && ssh-add -D
       - run: rm private_key
