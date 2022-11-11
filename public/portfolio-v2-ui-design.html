@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background-color: rgb(13, 14, 33);
+ margin: 0;
+}
+
+.l-main-block {
+  padding: 50px;
+  width: 600px;
+  height: 200px;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0);
+  border-radius: 3rem;
+}
+
+.l-main-block::before{
+  content: 'stuff?';
+  top: 0; left: 0;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-top: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-radius: 3rem 0rem 0 0;
+  
+  
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    linear-gradient(45deg, rgba(1,110,218,1) 0%, rgba(217,0,192,1) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  z-index: -1;
+  animation: animate 10s infinite linear;
+  text-shadow: 0px 0px 20px white, 0px 0px 10px white;
+  color: red;
+}
+
+
+/*
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)), radial-gradient(circle at top left, rgba(1,110,218,1) 0%, rgba(217,0,192,1) 100%);
+*/
+
+.l-main-block::after{
+  content: '';
+  top: 0; right: 0;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  border-top: 2px solid transparent;
+  border-right: 2px solid black;
+}
+
+.border-corner {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+}
+
+.border-corner::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 5px;
+  height: 5px;
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+}
+
+.border-corner::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 5px;
+  height: 5px;
+  border-bottom: 20px solid black;
+  border-right: 20px solid black;
+}
+
+.gradient-border {
+  color: rgba(255,255,255,1);
+  
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33));
+}
+
+@keyframes animate {
+  0% {
+      background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    linear-gradient(45deg, rgba(217,0,192,1) 0%, rgba(1,110,218,1) 100%);
+  }
+  100% {
+      background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)),
+    linear-gradient(45deg, rgba(1,110,218,1) 0%, rgba(217,0,192,1) 100%);
+  }
+}
+
+svg{
+  position: absolute;
+  border: 5px dashed blue;
+}
+
+/*
+Purple:
+rgba(138,0,217,1)
+
+Blue:
+rgba(1,110,218,1)
+
+Fuschia:
+rgba(217,0,192,1)
+
+Green:
+rgba(110,217,1,1)
+*/
+
+/*
+
+<stop offset="50%" stop-color="rgba(217,0,192,1)">
+        <animate attributeName="stop-color" values="rgba(217,0,192,1); rgba(1,110,218,1); rgba(138,0,217,1); rgba(110,217,1,1); rgba(217,0,192,1)" dur="10s" repeatCount="indefinite"></animate>
+      </stop>
+      <stop offset="100%" stop-color="rgba(110,217,1,1)">
+        <animate attributeName="stop-color" values="rgba(110,217,1,1); rgba(217,0,192,1); rgba(1,110,218,1); rgba(138,0,217,1); rgba(110,217,1,1)" dur="10s" repeatCount="indefinite"></animate>
+      </stop>
+
+*/
+</style>
+<title>A generated file from a website sandbox</title>
+</head>
+<body>
+<div class="l-main-block gradient-border">
+  <div class="border-corner"></div>
+  hello
+</div>
+<svg width="250" height="250" style="top: 0;">
+  <defs>
+    <style type="text/css">
+          #stop1, #stop2, #stop3, #stop4, #stop5, #stop6, #stop7, #stop8, #stop9, #stop10, #stop11, #stop12, #stop13, #stop14, #stop15, #stop16, #stop17, #stop18, #stop19, #stop20, #stop21
+      { animation: colorChange 30s linear 0s infinite; }
+
+      #stop1 { animation-delay: -10s; }
+      #stop2 { animation-delay: -9.5s; }
+      #stop3 { animation-delay: -9s; }
+      #stop4 { animation-delay: -8.5s; }
+      #stop5 { animation-delay: -8s; }
+      #stop6 { animation-delay: -7.5s; }
+      #stop7 { animation-delay: -7s; }
+      #stop8 { animation-delay: -6.5s; }
+      #stop9 { animation-delay: -6s; }
+      #stop10 { animation-delay: -5.5s; }
+      #stop11 { animation-delay: -5s; }
+      #stop12 { animation-delay: -4.5s; }
+      #stop13 { animation-delay: -4s; }
+      #stop14 { animation-delay: -3.5s; }
+      #stop15 { animation-delay: -3s; }
+      #stop16 { animation-delay: -2.5s; }
+      #stop17 { animation-delay: -2s; }
+      #stop18 { animation-delay: -1.5s; }
+      #stop19 { animation-delay: -1s; }
+      #stop20 { animation-delay: -0.5s; }
+      #stop21 { animation-delay: 0s; }
+
+      @keyframes colorChange{
+        0% {stop-color: rgba(1,110,218,1)}
+        33% {stop-color: rgba(110,217,1,1)}
+        66% {stop-color: rgba(217,0,192,1)}
+        100% {stop-color: rgba(1,110,218,1)}
+      }
+    </style>
+    <radialGradient id="grad1" cx="0" cy="0" r="1">
+      <stop offset="0%" id="stop1" />
+      <stop offset="5%" id="stop2" />
+      <stop offset="10%" id="stop3" />
+      <stop offset="15%" id="stop4" />
+      <stop offset="20%" id="stop5" />
+      <stop offset="25%" id="stop6" />
+      <stop offset="30%" id="stop7" />
+      <stop offset="35%" id="stop8" />
+      <stop offset="40%" id="stop9" />
+      <stop offset="45%" id="stop10" />
+      <stop offset="50%" id="stop11" />
+      <stop offset="55%" id="stop12" />
+      <stop offset="60%" id="stop13" />
+      <stop offset="65%" id="stop14" />
+      <stop offset="70%" id="stop15" />
+      <stop offset="75%" id="stop16" />
+      <stop offset="80%" id="stop17" />
+      <stop offset="85%" id="stop18" />
+      <stop offset="90%" id="stop19" />
+      <stop offset="95%" id="stop20" />
+      <stop offset="100%" id="stop21" />
+    </radialGradient>
+    <linearGradient id="corner" x1="1" x2="0" y1="0" y2="0">
+      <stop offset="50%" stop-color="rgba(1,110,218,1)">
+        <animate attributeName="stop-color" values="rgba(1,110,218,1); rgba(217,0,192,1); rgba(1,110,218,1)" dur="1s" repeatCount="indefinite"></animate>
+      </stop>
+      <stop offset="85%" stop-color="transparent"/>
+    </linearGradient>
+    <linearGradient id="corner2" x1="0" x2="0" y1="1" y2="0">
+      <stop offset="0%" stop-color="red">
+        <animate attributeName="stop-color" values="red; green; blue; red" dur="3s" repeatCount="indefinite"></animate>
+      </stop>
+      <stop offset="33%" stop-color="red">
+        <animate attributeName="stop-color" values="red; green; blue; red" dur="3s" repeatCount="indefinite"></animate>
+        
+      </stop>
+      <stop offset="66%" stop-color="green">
+        <animate attributeName="stop-color" values="green; blue; red; green;" dur="3s" repeatCount="indefinite"></animate>
+      </stop>
+      <stop offset="100%" stop-color="blue">
+        <animate attributeName="stop-color" values="blue; red; green; blue;" dur="3s" repeatCount="indefinite"></animate>
+      </stop>
+    </linearGradient>
+    <mask id="mask1">
+          <path
+        style="fill:#FFFFFF;fill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+       d="M 25,3.9361988e-7 200,0 187.5,12.5 150,25 37.5,25 C 25.002387,24.941166 25.003671,24.939882 25,37.5 V 150 L 12.5,187.5 0,200 V 25 C 0,4.9930635 4.9983259,3.9361988e-7 25,3.9361988e-7 Z" />
+    </mask>
+    <mask id="glow-mask">
+      <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+       d="M 0,200 12.5,187.5 25,150 C 74.437311,100.56269 104.63309,70.366913 150,25 L 187.5,12.5 200,0 265,-54.75 -66.75,-55.25 -67.25,266 0,200"/>
+    </mask>
+    <!--Width allows for blur to continue right, height for bottom, x for left, y for top-->
+    <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+    </filter>
+      <g transform="translate(25 25)" id="base-corner">
+    <path 
+       filter="url(#f1)"
+       fill="rgba(255,255,255,0.1)"
+          
+        style="tcssfill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+       d="M 25,3.9361988e-7 200,0 187.5,12.5 150,25 37.5,25 C 25.002387,24.941166 25.003671,24.939882 25,37.5 V 150 L 12.5,187.5 0,200 V 25 C 0,4.9930635 4.9983259,3.9361988e-7 25,3.9361988e-7 Z" />
+    
+    <path 
+       filter="url(#f1)"
+       fill="url(#grad1)"
+          
+        style="tcssfill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+       d="M 25,3.9361988e-7 200,0 187.5,12.5 150,25 37.5,25 C 25.002387,24.941166 25.003671,24.939882 25,37.5 V 150 L 12.5,187.5 0,200 V 25 C 0,4.9930635 4.9983259,3.9361988e-7 25,3.9361988e-7 Z" />
+    
+
+    
+    <path 
+       fill="url(#grad1)"
+          
+        style="tcssfill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+       d="M 25,3.9361988e-7 200,0 187.5,12.5 150,25 37.5,25 C 25.002387,24.941166 25.003671,24.939882 25,37.5 V 150 L 12.5,187.5 0,200 V 25 C 0,4.9930635 4.9983259,3.9361988e-7 25,3.9361988e-7 Z" />
+  </g>
+  </defs>
+  <use href="#base-corner" />
+</svg>
+<svg width="250" height="250" style="top: 0; left: 250px;">
+	<use href="#base-corner" transform="rotate(90 125 125)"/>
+</svg>
+<svg width="250" height="250" style="top: 250px;">
+	<use href="#base-corner" transform="rotate(270 125 125)"/>
+</svg>
+<svg width="250" height="250" style="top: 250px; left: 250px;">
+	<use href="#base-corner" transform="rotate(180 125 125)"/>
+</svg>
+<object type="image/svg+xml" data="image.svg"></object>
+<object type="image/svg+xml" data="image.svg" style="transform: rotate(90deg)"></object>
+<object type="image/svg+xml" data="image.svg" style="transform: rotate(180deg)"></object>
+<object type="image/svg+xml" data="image.svg" style="transform: rotate(270deg)"></object>
+<script>
+// JS goes here!
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+
+<svg
+  width="350"
+  height="350"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  >
+  <defs>
+    
+    <style type="text/css">
+      /* 21 breakpoints to help fluidity */
+      #stop1, #stop2, #stop3, #stop4, #stop5, #stop6, #stop7, #stop8, #stop9, #stop10,
+      #stop11, #stop12, #stop13, #stop14, #stop15, #stop16, #stop17, #stop18, #stop19,
+      #stop20, #stop21
+      { animation: colorChange 30s linear 0s infinite; }
+
+      /* Needed to reverse the direction of the color propogation */
+      #stop1 { animation-delay: -10s; }
+      #stop2 { animation-delay: -9.5s; }
+      #stop3 { animation-delay: -9s; }
+      #stop4 { animation-delay: -8.5s; }
+      #stop5 { animation-delay: -8s; }
+      #stop6 { animation-delay: -7.5s; }
+      #stop7 { animation-delay: -7s; }
+      #stop8 { animation-delay: -6.5s; }
+      #stop9 { animation-delay: -6s; }
+      #stop10 { animation-delay: -5.5s; }
+      #stop11 { animation-delay: -5s; }
+      #stop12 { animation-delay: -4.5s; }
+      #stop13 { animation-delay: -4s; }
+      #stop14 { animation-delay: -3.5s; }
+      #stop15 { animation-delay: -3s; }
+      #stop16 { animation-delay: -2.5s; }
+      #stop17 { animation-delay: -2s; }
+      #stop18 { animation-delay: -1.5s; }
+      #stop19 { animation-delay: -1s; }
+      #stop20 { animation-delay: -0.5s; }
+      #stop21 { animation-delay: 0s; }
+
+      /* Goes from blue to green to fuschia to blue*/
+      @keyframes colorChange{
+        0% {stop-color: rgba(1,110,218,1)}
+        33% {stop-color: rgba(110,217,1,1)}
+        66% {stop-color: rgba(217,0,192,1)}
+        100% {stop-color: rgba(1,110,218,1)}
+      }
+    </style>
+    
+    <radialGradient id="corner-outwards" cx="0" cy="0" r="1">
+      <stop offset="0%" id="stop1" />
+      <stop offset="5%" id="stop2" />
+      <stop offset="10%" id="stop3" />
+      <stop offset="15%" id="stop4" />
+      <stop offset="20%" id="stop5" />
+      <stop offset="25%" id="stop6" />
+      <stop offset="30%" id="stop7" />
+      <stop offset="35%" id="stop8" />
+      <stop offset="40%" id="stop9" />
+      <stop offset="45%" id="stop10" />
+      <stop offset="50%" id="stop11" />
+      <stop offset="55%" id="stop12" />
+      <stop offset="60%" id="stop13" />
+      <stop offset="65%" id="stop14" />
+      <stop offset="70%" id="stop15" />
+      <stop offset="75%" id="stop16" />
+      <stop offset="80%" id="stop17" />
+      <stop offset="85%" id="stop18" />
+      <stop offset="90%" id="stop19" />
+      <stop offset="95%" id="stop20" />
+      <stop offset="100%" id="stop21" />
+    </radialGradient>
+    
+    <!--Width allows for blur to continue right, height for bottom, x for left, y for top-->
+    <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
+    </filter>
+    
+    <!--Center image within the padding-->
+    <g transform="translate(25 25)" id="base-corner">
+      
+      <!--Subtle white glow underneath-->
+      <path 
+        filter="url(#f1)"
+        fill="rgba(255,255,255,0.1)"
+        style="tcssfill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+        d="M 25,0 H 300 L 287.5,12.5 250,25 H 37.5 C 25.002387,24.941167 25.003672,24.939882 25,37.5 V 250 L 12.5,287.5 0,300 V 25 C 0,4.9930641 4.9983269,0 25,0 Z" />
+      
+      <!--Blur the gradient shape for glow-->
+      <path 
+        filter="url(#f1)"
+        fill="url(#corner-outwards)"
+        style="tcssfill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+        d="M 25,0 H 300 L 287.5,12.5 250,25 H 37.5 C 25.002387,24.941167 25.003672,24.939882 25,37.5 V 250 L 12.5,287.5 0,300 V 25 C 0,4.9930641 4.9983269,0 25,0 Z" />
+      
+      <!--Add the animated gradient to the corner shape-->
+      <path 
+        fill="url(#corner-outwards)"
+        style="tcssfill-opacity:1;stroke:none;stroke-width:1.0001;stroke-opacity:1"
+        d="M 25,0 H 300 L 287.5,12.5 250,25 H 37.5 C 25.002387,24.941167 25.003672,24.939882 25,37.5 V 250 L 12.5,287.5 0,300 V 25 C 0,4.9930641 4.9983269,0 25,0 Z" />
+    </g>
+  </defs>
+  <use href="#base-corner" />
+  <!--transform rotate(deg center-x center-y)-->
+  <!-- <use href="#base-corner" transform="rotate(90 125 125)"/> -->
+  <!--TL: Base; TR: 90deg; BL: 270deg; BR: 180deg-->
+</svg>

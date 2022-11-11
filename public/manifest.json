@@ -1,9 +1,9 @@
 {
   "short_name": "Joseph Carmona",
-  "name": "Joseph Carmona's Portfolio",
+  "name": "Full Stack Developer | Joseph Carmona",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
