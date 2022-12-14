@@ -1,7 +1,7 @@
 # https://dev.to/aws-builders/guide-to-create-github-actions-workflow-for-terraform-and-aws-5de2
 name: Portfolio AWS Test
 on:
-  workflow-dispatch:
+  workflow_dispatch:
     inputs:
       tf_path:
         description: 'Terraform file path'
