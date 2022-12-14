@@ -1,0 +1,12 @@
+name: Test AWS CLI
+on:
+  workflow_dispatch:
+jobs:
+  test-cli:
+    runs-on: ubuntu-latest
+      steps:
+      - run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+        aws --version
