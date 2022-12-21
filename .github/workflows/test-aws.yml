@@ -59,5 +59,5 @@ jobs:
     - run: yarn install
     - run: yarn build
     - run: |
-        ls
-        ls build
+        aws s3 rm s3://tf.mrcarmona.com --recursive
+        aws s3 sync build s3://tf.mrcarmona.com
