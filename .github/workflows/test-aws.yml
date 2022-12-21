@@ -57,6 +57,7 @@ jobs:
       with:
         node-version: 14.17.5
     - run: |
-        npm ci
+        yarn install
+        npm install
         npm test
         yarn build
