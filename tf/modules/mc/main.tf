@@ -10,12 +10,18 @@ data "aws_iam_policy_document" "aws_s3_public_policy" {
 		}
 		*/
 
-		
+		/*
 		principals {
 			type		= "*"
 			identifiers = ["*"]
 		}
-		
+		*/
+
+		principals {
+			type = "AWS"
+			identifiers = ["arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${resource.aws_cloudfront_origin_access_identity.ex-identity.id}"]
+		}
+
 		actions = [
 			"s3:GetObject",
 			"s3:ListBucket",
@@ -225,6 +231,14 @@ resource "aws_cloudfront_distribution" "tf_distribution" {
 	depends_on = [
 		aws_acm_certificate_validation.cert_validation_mc
 	]
+
+	// Need custom error response to redirect the 404 to index to allow react router to takeover
+	custom_error_response {
+		error_caching_min_ttl	= 10
+		error_code				= 404
+		response_code			= 404
+		response_page_path		= "/index.html"
+	}
 }
 
 
