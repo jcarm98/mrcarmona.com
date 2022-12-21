@@ -51,3 +51,12 @@ jobs:
       # terraform destroy -auto-approve
       working-directory: ${{ github.event.inputs.tf_path }}
       # build website contents locally, use aws cli to clear s3 bucket then copy files to bucket
+      
+    - name: Initialize Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.17.5
+    - run: |
+        npm ci
+        npm test
+        yarn build
