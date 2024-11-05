@@ -17,7 +17,7 @@ jobs:
       - run: echo $RANDOM | md5sum | head -c 20 > name.txt
       - run: echo "sh ~/runner_helper_mc $(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
     #  - run: ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}} "rm -rf ~/repo && . ~/runner_helper"
-      - run: echo "cd ~/$(cat name.txt) && export PATH=/home/deploy/.nvm/versions/node/v14.17.5/bin:$PATH && yarn install && yarn build" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
+      - run: echo "cd ~/$(cat name.txt) && yarn install && yarn build" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
       - run: echo "rm -rf /var/www/portfolio-test1 && cp -r ~/$(cat name.txt)/build /var/www/portfolio-test1" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
       - run: echo "rm -rf /etc/apache2/sites-enabled/test1.conf && cp ~/$(cat name.txt)/test1.conf /etc/apache2/sites-enabled/test1.conf && sudo /usr/sbin/service apache2 restart; rm -rf ~/$(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
       - run: eval `ssh-agent -s` && ssh-add -D
