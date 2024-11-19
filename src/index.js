@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
     Link,
     Redirect,
@@ -346,7 +346,7 @@ class Portfolio extends React.Component {
                                 size="h3" />
                         </div>
                     </div>
-                    <Switch>
+                    <Routes>
                         <Route path="/websites">
                             <Websites />
                         </Route>
@@ -359,7 +359,7 @@ class Portfolio extends React.Component {
                         <Route path="/">
                             {<Redirect to="/websites" />}
                         </Route>
-                    </Switch>
+                    </Routes>
                     <div class="pt-1"></div>
                 </div>
             </Router>
