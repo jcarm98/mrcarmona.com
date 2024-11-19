@@ -6,7 +6,7 @@ import {
     Routes,
     Route,
     Link,
-    Redirect,
+    Navigate,
 } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -357,7 +357,7 @@ class Portfolio extends React.Component {
                             <Hardware />
                         </Route>
                         <Route path="/">
-                            {<Redirect to="/websites" />}
+                            {<Navigate to="/websites" />}
                         </Route>
                     </Routes>
                     <div class="pt-1"></div>
