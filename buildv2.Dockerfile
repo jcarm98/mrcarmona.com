@@ -12,7 +12,5 @@ COPY src ./src
 
 RUN . ~/.bashrc && npm install
 
-SHELL ["/bin/bash", "-c"]
-
-ENTRYPOINT . ~/.bashrc && npm run build
+ENTRYPOINT ["/bin/sh", "-c", ". ~/.bashrc && npm run build"]
 
