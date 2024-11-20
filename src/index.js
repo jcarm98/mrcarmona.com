@@ -9,7 +9,6 @@ import {
     Link,
     Navigate
 } from "react-router-dom";
-
 /*
 function panel(props) {
     /*
@@ -43,7 +42,7 @@ function loadImages() {
                     console.log("Problem during body.onLoad:", e);
             }
         }
-    }, 100);
+    }, 1);
 }
 
 document.body.onload = loadImages;
@@ -95,6 +94,7 @@ function openImageModal(sourceId) {
 
 let onLoadCalls = {};
 
+// TODO: Pass alt text to each LazyLoadImage and populate
 function LazyLoadImage(props) {
     let id = "id" in props ? props.id : uuidv4();
     let source = props.source.slice(0, props.source.indexOf(".png")) + `-lq.png`;
@@ -111,7 +111,7 @@ function LazyLoadImage(props) {
 }
 
 
-function imagePicker(images, ids) {
+export function imagePicker(images, ids) {
     let id = ids.slice(-1)[0];
     function selectImage(name){
         return () => {
@@ -137,10 +137,10 @@ function imagePicker(images, ids) {
     );
 }
 
-function Panel(props) {
+export function Panel(props) {
     let resourceList = props.resources.map((el, index) => {
         return (
-            <li>
+            <li key={index}>
                 {el}
             </li>
         );
@@ -154,7 +154,7 @@ function Panel(props) {
                         <ul tabIndex="0">
                             {resourceList}
                         </ul>
-                        {imagePicker(props.images, props.ids)}
+                        {props.images.length > 0 ? imagePicker(props.images, props.ids) : ''}
                     </div>
                 </div>
                 <div class="project-content-2">
@@ -171,7 +171,7 @@ function Panel(props) {
                 </div>
                 <div class="project-content-1">
                     <div class="project-image-align">
-                        {imagePicker(props.images, props.ids)}
+                        {props.images.length > 0 ? imagePicker(props.images, props.ids) : ''}
                         <ul tabIndex="0">
                             {resourceList}
                         </ul>
@@ -316,14 +316,17 @@ function Software(props) {
     );
 }
 
+/* TODO: Remove magic numbers */
 let websiteIds1 = createIds(6);
 let websiteIds2 = createIds(1);
 let websiteIds3 = createIds(3);
 
 class Portfolio extends React.Component {
+    /* Useless constructor
     constructor(props){
         super(props);
     }
+    */
 
     render() {
         let websites = [
@@ -427,50 +430,60 @@ class Portfolio extends React.Component {
     }
 }
 
-window.onLoadCalls = onLoadCalls;
-window.uuid = uuidv4;
+//window.onLoadCalls = onLoadCalls;
+//window.uuid = uuidv4;
 
-
-function RouterTemplate() {
-    let headerText = ['Websites', 'Software', 'Hardware'];
-    headerText = headerText.map((text, index) => (
+/*
+Test that selected route renders proper stuff?
+*/
+function RouterOutput() {
+    const headerTuples = [
+        {
+            label: 'Websites',
+            route: '/',
+        },
+        {
+            label: 'Software',
+            route: '/software',
+        },
+        {
+            label: 'Hardware',
+            route: '/hardware',
+        },
+    ];
+    const delayMap = ['', 'delay-30', 'delay-60'];
+    const headerLinks = headerTuples.map((header, index) => (
+        /* TODO: Make into class*/
         <Link style={{ position: "relative", display: "flex", "align-items": "center", cursor: "pointer" }}
             class="cancel-anchor-style"
-            to={index === 0 ? "/" : index === 1 ? "/software" : "/hardware"}
+            to={header.route}
             onClick={loadImages}
         >
-            <div class={
-                index === 0
-                    ? "tab-padding gradient-text"
-                    : index === 1
-                        ? "tab-padding gradient-text delay-30"
-                        : "tab-padding gradient-text delay-60"}>
-                {text}
-            </div><div class={
-                index === 0
-                    ? "tab-padding gradient-text blur"
-                    : index === 1
-                        ? "tab-padding gradient-text blur delay-30"
-                        : "tab-padding gradient-text blur delay-60"}>
-                {text}
+            {/* TODO: Clean up classes here */}
+            <div class={`tab-padding gradient-text ${delayMap[index]}`}>
+                {header.label}
+            </div>
+            <div class={`tab-padding gradient-text blur ${delayMap[index]}`}>
+                {header.label}
             </div>
         </Link>
     ));
 
     return (
         <div id="container-wrapper">
-                <div id="div1"></div>
-                <div id="container">
-
+            <div id="left-gradient"></div>
+            <div id="container">
                 <Router>
                     <header>
                         <div class="corner-200-tl"></div>
                         <div class="corner-200-tr"></div>
                         <h1>Joseph Carmona</h1>
                         <h2>Full Stack Developer</h2>
+                        {/* TODO: Make copy into class*/}
                         <h2>joseph&lt;at&gt;splitreceipt&#123;dot&#125;app <div id="copy" onClick={copyToClipboard}>&nbsp;&nbsp;&nbsp;</div> | <a href="https://github.com/jcarm98">Github</a> | <a href="https://www.linkedin.com/in/joseph-carmona-347433155/">LinkedIn</a></h2>
+                        {/* TODO: Make into class*/}
                         <div style={{ display: "flex", "justify-content": "space-around", "width": "100%" }}>
-                            {headerText}
+                            {headerLinks}
                         </div>
                     </header>
                     <Routes>
@@ -480,24 +493,26 @@ function RouterTemplate() {
                         <Route path="*" element={<Navigate to="/" replace />} />
                     </Routes>
                 </Router>
-
-                    <div id="footer-spacer"></div>
-                    <footer>
-                        <div class="corner-200-tl"></div>
-                        footer
-                    </footer>
-                    {/*
-                        <object style={{ zIndex: 3, width: "100%", height: "100%" }} data="./test.svg" type="image/svg+xml"></object>
-                    */}
-                </div>
-                <div id="div2"></div>
+                <div id="footer-spacer"></div>
+                <footer>
+                    <div class="corner-200-tl"></div>
+                    Hidden footer
+                </footer>
+                {/*
+                    <object style={{ zIndex: 3, width: "100%", height: "100%" }} data="./test.svg" type="image/svg+xml"></object>
+                */}
             </div>
+            <div id="right-gradient"></div>
+         </div>
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-        <RouterTemplate />
-  </React.StrictMode>
-);
+const documentRoot = document.getElementById('root');
+if (documentRoot !== undefined && documentRoot !== null) {
+    const root = ReactDOM.createRoot(documentRoot);
+    root.render(
+        <React.StrictMode>
+            <RouterOutput />
+        </React.StrictMode>
+    );
+}

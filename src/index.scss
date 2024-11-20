@@ -173,12 +173,14 @@ button:hover:active::after,
     align-items: center;
 }
 
+/*
 #container-wrapper {
     width: 100%;
     height: 100%;
 }
+*/
 
-#div1, #div2 {
+#left-gradient, #right-gradient {
     position: fixed;
     height: 100vh;
     width: calc(5px + 55 * ((100vw - 300px)/1300));
@@ -187,33 +189,33 @@ button:hover:active::after,
 }
 
 @media(max-width: 300px) {
-    #div1, #div2 {
+    #left-gradient, #right-gradient {
         width: 5px;
     }
 }
 
 @media(min-width: 1600px) {
-    #div1, #div2 {
+    #left-gradient, #right-gradient {
         width: 60px;
     }
 }
 
-#div1 {
+#left-gradient {
     background-image: linear-gradient(90deg, transparent, rgba(22,22,29,1));
     left: calc(50% - calc(146px + 514 * ((100vw - 300px)/1300)));
 }
 
-#div2 {
+#right-gradient {
     background-image: linear-gradient(270deg, transparent, rgba(22,22,29,1));
     right: calc(50% - calc(146px + 514 * ((100vw - 300px)/1300)));
 }
 
 @media(min-width: 1600px) {
-    #div1 {
+    #left-gradient {
         left: calc((100% - 1320px)/2);
     }
 
-    #div2 {
+    #right-gradient {
         right: calc((100% - 1320px)/2);
     }
 }
@@ -268,6 +270,7 @@ button:hover:active::after,
     background-color: rgba(22, 22, 29, 1);
 }
 
+/*
 #test {
     width: 100%;
     left: 50%;
@@ -275,9 +278,10 @@ button:hover:active::after,
     transform: translate(-50%, 0%);
     z-index: 0;
 }
+*/
 
 #root {
-    animation: enter 2.5s cubic-bezier(0, 0.79, 0, 1) forwards;
+    animation: enter 3s cubic-bezier(0, 0.79, 0, 1) forwards;
 }
 
 @keyframes enter {
@@ -403,9 +407,7 @@ $width-max-rem: 100rem;
 
 footer {
     position: absolute;
-    left: 50%;
     bottom: 0;
-    transform: translate(-50%, 0);
     width: 100%;
     height: 100px;
     box-sizing: border-box;

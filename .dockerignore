@@ -1,0 +1,12 @@
+.dockerignore
+.eslintcache
+node_modules
+tf
+.github
+.gitignore
+package-lock.json
+README.md
+*.conf
+*.Dockerfile
+build
+
