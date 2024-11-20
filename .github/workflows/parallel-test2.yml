@@ -10,17 +10,17 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{secrets.PRIVATE_KEY_1}}" >> private_key
+      - run: echo "${{secrets.PRIVATE_KEY_2}}" >> private_key
       - run: chmod 400 private_key
     # - run: eval `ssh-agent -s` && ssh-add private_key 
     # - run: scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i private_key newfile.txt root@${{secrets.SERVER_IP_1}}:~/newfile.txt
       - run: echo $RANDOM | md5sum | head -c 20 > name.txt
-      - run: echo "sh ~/runner_helper_mc $(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
+      - run: echo "sh ~/runner_helper_mc $(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_2}}
     #  - run: ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}} "rm -rf ~/repo && . ~/runner_helper"
     # 11/5/2024 need to npm install --save-dev @babel/core (using yarn here) to get correctly versioned dependency for building v1
-      - run: echo "cd ~/$(cat name.txt) && git checkout v2 && npm install && npm run build" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
-      - run: echo "rm -rf /var/www/portfolio-test1 && cp -r ~/$(cat name.txt)/build /var/www/portfolio-test1" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
-      - run: echo "rm -rf /etc/apache2/sites-enabled/test1.conf && cp ~/$(cat name.txt)/test1.conf /etc/apache2/sites-enabled/test1.conf && sudo /usr/sbin/service apache2 restart; rm -rf ~/$(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_1}}
+      - run: echo "cd ~/$(cat name.txt) && git checkout v1 && nvm use v14.17.5 && npm install && npm run build" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_2}}
+      - run: echo "rm -rf /var/www/portfolio-test1 && cp -r ~/$(cat name.txt)/build /var/www/portfolio-test1" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_2}}
+      - run: echo "rm -rf /etc/apache2/sites-enabled/test1.conf && cp ~/$(cat name.txt)/test1.conf /etc/apache2/sites-enabled/test1.conf && sudo /usr/sbin/service apache2 restart; rm -rf ~/$(cat name.txt)" | ssh -o StrictHostKeyChecking=no -i private_key deploy@${{secrets.SERVER_IP_2}}
       - run: eval `ssh-agent -s` && ssh-add -D
       - run: rm private_key
       
