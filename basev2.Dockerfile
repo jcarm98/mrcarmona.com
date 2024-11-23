@@ -6,11 +6,5 @@ WORKDIR /root
 
 COPY package.json ./
 
-COPY public ./public
-
-COPY src ./src
-
 RUN . ~/.bashrc && npm install
-
-ENTRYPOINT ["/bin/sh", "-c", ". ~/.bashrc && npm run build"]
 
