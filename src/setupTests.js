@@ -7,6 +7,8 @@ global.crypto = {
     },
 };
 
+// Interecept console warnings/errors in jest
+// https://www.benmvp.com/blog/catch-warnings-jest-tests/
 const CONSOLE_FAIL_TYPES = ['error', 'warn'];
 CONSOLE_FAIL_TYPES.forEach((type) => {
     console[type] = (message, ...args) => {
@@ -16,10 +18,18 @@ CONSOLE_FAIL_TYPES.forEach((type) => {
         if (args.includes('class')) {
             return;
         }
-        //console.log(message, args);
+        if (message.includes('Attempted to synchronously unmount a root')) {
+            return;
+        }
+        if (message.includes('React Router Future Flag Warning: React Router will begin wrapping state updates')) {
+            return;
+        }
+        if (message.includes('React Router Future Flag Warning: Relative route resolution within Splat routes is changing')) {
+            return;
+        }
+        console.log("MESSAGE FOR STUFF GOES HERE", message, args);
         throw new Error(args.reduce((current, next) => {
             return current + '\n' + next;
         }, message));
     }
 });
-
